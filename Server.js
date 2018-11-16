@@ -106,4 +106,10 @@ app.get("/^(#\/admin)([/].*)?/", (request, response) => {
     }
 });
 
+app.get("/#/admin", (request, response) => {
+    if(!request.response.loggedin){
+        response.redirect("/#/home");
+    }
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));
