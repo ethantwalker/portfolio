@@ -1,5 +1,7 @@
 let express = require("express");
 let cors = require("cors");
+let bodyParser = require("body-parser");
+let bcrypt = require("bcrypt");
 let MongoClient = require("mongodb").MongoClient;
 
 const URL = "mongodb://localhost:27017/";
@@ -10,6 +12,7 @@ let app = express();
 const port =  process.env.PORT || 8080;
 
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static("./dist"));
 
 app.get("/api/getSamples", (request, response) => {
@@ -47,6 +50,58 @@ app.get("/api/getSamples", (request, response) => {
             response.send({error: `SERVER ERROR WITH GET: ${err}`});
             throw err;
         });
+});
+
+app.post("/login", (request, response) => {
+
+    let mongoClient;
+    MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true}).then( client => {
+
+        mongoClient = client;
+        let adminCollection = mongoClient.db("dbAdmin").collection("admin");
+
+        return adminCollection.find({username: request.body.username}).toArray();
+
+    }).then(user => {
+
+        if(user.length == 0){
+            response.status(401);
+            response.send("Incorrect username or password");
+        } else{
+            console.log("User found");
+            bcrypt.compare(request.body.password, user[0].password, (err, result) => {
+                if(result){
+                    response.status(200);
+                    response.send("Success");
+                } else{
+                    response.status(401);
+                    response.send("Incorrect username or password");
+                }
+            });
+        }
+
+    }).catch(err => {
+        response.status(500);
+        response.send(`AN ERROR OCCURED: ${err}`);
+    });
+    
+
+    /*
+    let user = request.body.username;
+    let pass = request.body.password;
+
+    let hashedPass;
+        */
+
+    //console.log("\n\n\n" + user);
+    //console.log(pass);
+
+    /*
+    bcrypt.hash(pass, 10, (err, hash) => {
+        console.log("\n\n\n" + hash);
+    });
+    */
+    
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
