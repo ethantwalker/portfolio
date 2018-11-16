@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server": "nodemon server/src/Server.js",
+    "server": "nodemon Server.js",
     "mongo": "mongod --dbpath c:/data/db",
     "client": "ng serve --open --live-reload false",
     "master": "git push -u origin master && git checkout ethan-working",
