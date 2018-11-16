@@ -11,7 +11,7 @@ export class AddComponent implements OnInit {
   constructor(public portfolioData:PortfolioDataService) { }
 
   ngOnInit() {
-    this.portfolioData.checkSessionState();
+    this.portfolioData.redirectToLogin();
   }
 
 }

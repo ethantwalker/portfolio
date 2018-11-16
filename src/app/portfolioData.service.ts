@@ -74,8 +74,7 @@ export class PortfolioDataService {
         if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
             this.loginFailed = false;
 
-            console.log(">>>USERNAME: " + this.username);
-            console.log(">>>PASSWORD: " + this.password);
+            console.log(">>>LOGGING IN...");
 
             let sendJSON = {
                 "username": this.username,
@@ -89,7 +88,8 @@ export class PortfolioDataService {
             ).subscribe(
                 //if sending data was a sucess, load the data again
                 data =>{
-                    console.log(data.status);
+                    console.log("LOGIN POST STATUS: " + data.status);
+                    
                     switch(data.status){
                         case 401:
                             this.loginFailed = true;
@@ -115,8 +115,12 @@ export class PortfolioDataService {
         }
     }
 
-    public checkSessionState():void{
-        if(sessionStorage.getItem(this.sessionState) != "signed in"){
+    public checkSessionState():string{
+        return sessionStorage.getItem(this.sessionState);
+    }
+
+    public redirectToLogin():void{
+        if(this.checkSessionState() != "signed in"){
             this.router.navigate(['login']);
         }
     }

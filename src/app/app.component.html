@@ -1,10 +1,16 @@
 <div class="loadingOverlay" *ngIf="!portfolioData.loaded"><div><i class="fa fa-spinner fa-spin"></i></div></div>
 
-<nav class="headernav">
-  <span [routerLink]="['/home']" class="{{portfolioData.getRoute() == 'home' ? 'headernav--item__selected' : 'headernav--item'}}">Home</span>
-  <span [routerLink]="['/resume']" class="{{portfolioData.getRoute() == 'resume' ? 'headernav--item__selected' : 'headernav--item'}}">Resume</span>
-  <span [routerLink]="['/samples']" class="{{portfolioData.getRoute() == 'samples' ? 'headernav--item__selected' : 'headernav--item'}}">Samples</span>
-  <span [routerLink]="['/contact']" class="{{portfolioData.getRoute() == 'contact' ? 'headernav--item__selected' : 'headernav--item'}}">Contact</span>
+<nav class="headernav" *ngIf="portfolioData.checkSessionState() != 'signed in'">
+    <span [routerLink]="['/home']" class="{{portfolioData.getRoute() == 'home' ? 'headernav--item__selected' : 'headernav--item'}}">Home</span>
+    <span [routerLink]="['/resume']" class="{{portfolioData.getRoute() == 'resume' ? 'headernav--item__selected' : 'headernav--item'}}">Resume</span>
+    <span [routerLink]="['/samples']" class="{{portfolioData.getRoute() == 'samples' ? 'headernav--item__selected' : 'headernav--item'}}">Samples</span>
+    <span [routerLink]="['/contact']" class="{{portfolioData.getRoute() == 'contact' ? 'headernav--item__selected' : 'headernav--item'}}">Contact</span>
+</nav>
+
+<nav class="headernav" *ngIf="portfolioData.checkSessionState() == 'signed in'">
+    <span [routerLink]="['/admin/add']" class="{{portfolioData.getRoute() == 'add' ? 'headernav--item__selected' : 'headernav--item'}}">Add</span>
+    <span [routerLink]="['/admin/update']" class="{{portfolioData.getRoute() == 'update' ? 'headernav--item__selected' : 'headernav--item'}}">Update</span>
+    <span [routerLink]="['/admin/delete']" class="{{portfolioData.getRoute() == 'delete' ? 'headernav--item__selected' : 'headernav--item'}}">Delete</span>
 </nav>
             
 <div class="banner">
