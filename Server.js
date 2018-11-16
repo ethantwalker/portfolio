@@ -58,7 +58,7 @@ app.post("/api/addSample", (request, response) => {
     MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true }).then( client => {
         mongoClient = client;
         let db = mongoClient.db() || mongoClient.db("dbSamples");
-        let dbSamples = db.collection("dbSamples");
+        let dbSamples = db.collection("samples");
 
         return dbSamples.insertOne(request.body);
     }).then( result => {
