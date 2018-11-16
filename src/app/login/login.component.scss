@@ -1,0 +1,42 @@
+@import "./../../globals";
+
+.login{
+    &__group{
+
+        margin-top: 15px;
+
+        &--label{
+            margin-bottom: 5px;
+        }
+
+        &--input{
+            width: 300px;
+            height: 25px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline-color: #7dce94;
+        }
+    }
+
+    &--button{
+        @include noselect();
+
+        outline: none;
+        margin-top: 20px;
+        border-radius: 5px;
+        width: 70px;
+        height: 30px;
+        border: none;
+        background: none;
+        background-color: #7dce94;
+        color: white;
+        box-shadow: 0 5px 0 #838685;
+
+        cursor: pointer;
+
+        &:active{
+            box-shadow: 0 3px #666;
+            transform: translateY(4px);
+        }
+    }
+}

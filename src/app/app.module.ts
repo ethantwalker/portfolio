@@ -34,6 +34,7 @@ enableProdMode();
       { path: "samples", component: SamplesComponent },
       { path: "contact", component: ContactComponent },
       { path: "samples/selected",  component: SelectedComponent},
+      { path: "login", component: LoginComponent},
       { path: "", redirectTo: "home", pathMatch:"full" },
       { path: "**", redirectTo: "home", pathMatch:"full" }
     ])
