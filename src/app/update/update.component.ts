@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PortfolioDataService } from '../portfolioData.service';
 
 @Component({
   selector: 'app-update',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(public portfolioData:PortfolioDataService) { }
 
   ngOnInit() {
+    this.portfolioData.checkSessionState();
   }
 
 }

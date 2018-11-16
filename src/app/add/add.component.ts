@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PortfolioDataService } from '../portfolioData.service';
 
 @Component({
   selector: 'app-add',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  constructor() { }
+  constructor(public portfolioData:PortfolioDataService) { }
 
   ngOnInit() {
+    this.portfolioData.checkSessionState();
   }
 
 }
