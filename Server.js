@@ -59,8 +59,7 @@ app.post("/loginpost", (request, response) => {
     MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true}).then( client => {
 
         mongoClient = client;
-        let adminCollection = mongoClient.db().collection("admin");
-
+        let adminCollection = mongoClient.db("dbAdmin").collection("admin");
         return adminCollection.find({username: request.body.username}).toArray();
 
     }).then(user => {
@@ -72,7 +71,9 @@ app.post("/loginpost", (request, response) => {
             console.log("User found");
             bcrypt.compare(request.body.password, user[0].password, (err, result) => {
                 if(result){
+                    console.log("Password correct");
                     response.status(200);
+                    response.send("Login successful");
                 } else{
                     response.status(401);
                     response.send("Incorrect username or password");

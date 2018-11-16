@@ -18,7 +18,6 @@ export class PortfolioDataService {
     public samples:Sample[];
 
     public loginFailed = false;
-    public loggedIn = false;
 
     private sessionState = "signed out";
 
@@ -74,7 +73,6 @@ export class PortfolioDataService {
     public login():void{
         if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
             this.loginFailed = false;
-            this.loggedIn = false; 
 
             console.log(">>>USERNAME: " + this.username);
             console.log(">>>PASSWORD: " + this.password);
@@ -94,26 +92,26 @@ export class PortfolioDataService {
                     console.log(data.status);
                     switch(data.status){
                         case 401:
-                            this.loggedIn = false;
                             this.loginFailed = true;
                             break;
                         case 200:
-                            this.loggedIn = true;
+
                             this.loginFailed = false;
                             this.router.navigate(['admin']);
                             sessionStorage.setItem(this.sessionState, "signed in");
+
+                            this.username = "";
+                            this.password = "";
+
                             break;
                     }
                 },
                 err =>{
                     console.log(">>>ERROR SENDING DATA: " + err.error);
                     this.loginFailed = true;
-                    this.loggedIn = false;
                 }
             );
 
-            this.username = "";
-            this.password = "";
         }
     }
 
