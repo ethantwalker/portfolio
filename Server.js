@@ -100,7 +100,7 @@ app.get("/#/login", (request, response) => {
     }
 });
 
-app.get("/#/admin/:route", (request, response) => {
+app.get("/#/admin/:route?", (request, response) => {
     if(!request.response.loggedin){
         response.redirect("/#/home");
     }
