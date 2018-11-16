@@ -2,13 +2,14 @@
 
 .selected{
 
-    outline: none;
+    
 
     &--details{
         &--title{
             font-size: 20px;
         }
         &--arrow{
+            outline: none;
             color: #7dce94;
         }
     }
@@ -36,7 +37,7 @@
         }
 
         img{
-            width: 300px;
+            
             max-width: 100%; 
             max-height: 450px;
         }
