@@ -43,6 +43,7 @@ enableProdMode();
       { path: "contact", component: ContactComponent },
       { path: "samples/selected",  component: SelectedComponent},
       { path: "login", component: LoginComponent},
+      { path: "admin", redirectTo: "admin/add", pathMatch: "full"},
       { path: "admin/add", component: AddComponent},
       { path: "admin/delete", component: DeleteComponent},
       { path: "admin/update", component: UpdateComponent},
