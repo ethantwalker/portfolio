@@ -1,11 +1,11 @@
 <div class="add">
   <div class="add__group">
     <div class="add__group--label">Title</div>
-    <input type="text"/>
+    <input type="text" [(ngModel)]="portfolioData.sampleJSON.title" />
   </div>
   <div class="add__group">
       <div class="add__group--label">Content</div>
-      <input type="text"/>
+      <input type="text" [(ngModel)]="portfolioData.sampleJSON.description"/>
   </div>
   <div class="add__group">
       <div class="add__group--label">Technologies</div>
@@ -21,7 +21,7 @@
   </div>
   <div class="add__group">
       <div class="add__group--label">Link</div>
-      <input type="text"/>
+      <input type="text" [(ngModel)]="portfolioData.sampleJSON.link"/>
   </div>
   <button class="add--button"  (click)="portfolioData.submitSample()">Add</button>
 </div>
