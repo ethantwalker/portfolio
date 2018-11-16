@@ -11,6 +11,7 @@ import { ResumeComponent } from './resume/resume.component';
 import { SelectedComponent } from './selected/selected.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {enableProdMode} from '@angular/core';
+import { LoginComponent } from './login/login.component';
 
 enableProdMode();
 
@@ -21,7 +22,8 @@ enableProdMode();
     HomeComponent,
     ContactComponent,
     ResumeComponent,
-    SelectedComponent
+    SelectedComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
