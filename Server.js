@@ -79,7 +79,7 @@ app.post("/loginpost", (request, response) => {
                 if(result){
                     request.session.loggedin = true;
                     request.session.cookie.expires = false;
-                    response.redirect("/#/admin");
+                    response.redirect("/#/admin/add");
                 } else{
                     response.status(401);
                     response.send("Incorrect username or password");
@@ -96,19 +96,13 @@ app.post("/loginpost", (request, response) => {
 
 app.get("/#/login", (request, response) => {
     if(request.response.loggedin){
-        response.redirect("/#/admin");
+        response.redirect("/#/admin/add");
     }
 });
 
 app.get("/^(#\/admin)([/].*)?/", (request, response) => {
     if(!request.response.loggedin){
-        response.redirect("/#/home");
-    }
-});
-
-app.get("/#/admin", (request, response) => {
-    if(!request.response.loggedin){
-        response.redirect("/#/home");
+        response.redirect("/");
     }
 });
 

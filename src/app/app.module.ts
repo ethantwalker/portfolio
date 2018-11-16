@@ -13,7 +13,9 @@ import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {enableProdMode} from '@angular/core';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-import { AdminComponent } from './admin/admin.component';
+import { AddComponent } from './add/add.component';
+import { DeleteComponent } from './delete/delete.component';
+import { UpdateComponent } from './update/update.component';
 
 enableProdMode();
 
@@ -26,7 +28,9 @@ enableProdMode();
     ResumeComponent,
     SelectedComponent,
     LoginComponent,
-    AdminComponent
+    AddComponent,
+    DeleteComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,9 @@ enableProdMode();
       { path: "contact", component: ContactComponent },
       { path: "samples/selected",  component: SelectedComponent},
       { path: "login", component: LoginComponent},
-      { path: "admin", component: AdminComponent},
+      { path: "admin/add", component: AddComponent},
+      { path: "admin/delete", component: DeleteComponent},
+      { path: "admin/update", component: UpdateComponent},
       { path: "", redirectTo: "home", pathMatch:"full" },
       { path: "**", redirectTo: "home", pathMatch:"full" }
     ])
