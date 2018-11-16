@@ -58,13 +58,13 @@ app.get("/api/getSamples", (request, response) => {
         });
 });
 
-app.post("/login", (request, response) => {
+app.post("/loginpost", (request, response) => {
 
     let mongoClient;
     MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true}).then( client => {
 
         mongoClient = client;
-        let adminCollection = mongoClient.db("dbAdmin").collection("admin");
+        let adminCollection = mongoClient.db().collection("admin");
 
         return adminCollection.find({username: request.body.username}).toArray();
 
@@ -79,7 +79,7 @@ app.post("/login", (request, response) => {
                 if(result){
                     request.session.loggedin = true;
                     request.session.cookie.expires = false;
-                    response.redirect("/");
+                    response.redirect("/#/admin");
                 } else{
                     response.status(401);
                     response.send("Incorrect username or password");
@@ -100,7 +100,7 @@ app.get("/#/login", (request, response) => {
     }
 });
 
-app.get("/#/admin/:route", (request, response) => {
+app.get("/#/admin/:route?", (request, response) => {
     if(!request.response.loggedin){
         response.redirect("/#/home");
     }
