@@ -70,36 +70,50 @@ export class PortfolioDataService {
     }
 
     public login():boolean{
-        this.loginFailed = false;
-        this.loggedIn = false; 
+        if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
+            this.loginFailed = false;
+            this.loggedIn = false; 
 
-        console.log(">>>USERNAME: " + this.username);
-        console.log(">>>PASSWORD: " + this.password);
+            console.log(">>>USERNAME: " + this.username);
+            console.log(">>>PASSWORD: " + this.password);
 
-        let sendJSON = {
-            "username": this.username,
-            "password": this.password
-        };
+            let sendJSON = {
+                "username": this.username,
+                "password": this.password
+            };
 
-        this.http.post(
-            "http://localhost:8080/login",
-            sendJSON,
-            {responseType: 'text'}
-        ).subscribe(
-            //if sending data was a sucess, load the data again
-            data =>{
-                console.log(data);
-            },
-            err =>{
-                console.log(">>>ERROR SENDING DATA: " + err.error);
-                this.loginFailed = true;
-                this.loggedIn = false;
-            }
-        );
+            this.http.post(
+                "http://ethantwalker.herokuapp.com/loginpost",
+                sendJSON,
+                {observe: "response", responseType: 'text'}
+            ).subscribe(
+                //if sending data was a sucess, load the data again
+                data =>{
+                    console.log(data.status);
+                    switch(data.status){
+                        case 401:
+                            this.loggedIn = false;
+                            this.loginFailed = true;
+                            break;
+                        case 200:
+                            this.loggedIn = true;
+                            this.loginFailed = false;
+                            break;
+                    }
+                },
+                err =>{
+                    console.log(">>>ERROR SENDING DATA: " + err.error);
+                    this.loginFailed = true;
+                    this.loggedIn = false;
+                }
+            );
 
-        this.username = "";
-        this.password = "";
+            this.username = "";
+            this.password = "";
 
-        return this.loggedIn;
+            return this.loggedIn;
+        } else {
+            return this.loggedIn;
+        }
     }
 }

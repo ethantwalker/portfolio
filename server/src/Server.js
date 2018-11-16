@@ -2,6 +2,7 @@ let express = require("express");
 let cors = require("cors");
 let bodyParser = require("body-parser");
 let bcrypt = require("bcrypt");
+let session = require("express-session");
 let MongoClient = require("mongodb").MongoClient;
 
 const URL = "mongodb://localhost:27017/";
@@ -12,6 +13,11 @@ let app = express();
 const port =  process.env.PORT || 8080;
 
 app.use(cors());
+
+app.use(session({
+    secret: 'Mb&Ml5Snd6L'
+}));
+
 app.use(bodyParser.json());
 app.use(express.static("./dist"));
 
@@ -71,8 +77,9 @@ app.post("/login", (request, response) => {
             console.log("User found");
             bcrypt.compare(request.body.password, user[0].password, (err, result) => {
                 if(result){
-                    response.status(200);
-                    response.send("Success");
+                    request.session.loggedin = true;
+                    request.session.cookie.expires = false;
+                    response.redirect("/");
                 } else{
                     response.status(401);
                     response.send("Incorrect username or password");
@@ -85,23 +92,18 @@ app.post("/login", (request, response) => {
         response.send(`AN ERROR OCCURED: ${err}`);
     });
     
+});
 
-    /*
-    let user = request.body.username;
-    let pass = request.body.password;
+app.get("/#/login", (request, response) => {
+    if(request.response.loggedin){
+        response.redirect("/#/admin");
+    }
+});
 
-    let hashedPass;
-        */
-
-    //console.log("\n\n\n" + user);
-    //console.log(pass);
-
-    /*
-    bcrypt.hash(pass, 10, (err, hash) => {
-        console.log("\n\n\n" + hash);
-    });
-    */
-    
+app.get("/#/admin/:route", (request, response) => {
+    if(!request.response.loggedin){
+        response.redirect("/#/home");
+    }
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
