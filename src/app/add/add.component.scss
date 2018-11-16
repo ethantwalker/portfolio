@@ -1,0 +1,29 @@
+.add{
+
+    &__group{
+        margin-top: 15px;
+
+        &--label{
+            margin-bottom: 5px;
+        }
+
+        
+        &__techs{
+
+            margin-top: 15px;
+
+            &--header{
+               
+            }
+
+            &--tech{
+                margin-top: 10px;
+                font-size: 15px;
+            }
+        }
+    }
+
+    &--button{
+        margin-top:25px;
+    }
+}

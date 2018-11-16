@@ -23,7 +23,7 @@ app.get("/api/getSamples", (request, response) => {
 
             mongoClient = client;
             //reference to DB
-            let db = client.db();
+            let db = mongoClient.db() || mongoClient.db("dbSamples");
             //reference to the the samples collection
             let samplesCollection = db.collection("samples");
 
@@ -53,13 +53,34 @@ app.get("/api/getSamples", (request, response) => {
         });
 });
 
-app.post("/loginpost", (request, response) => {
+app.post("/api/addSample", (request, response) => {
+    let mongoClient;
+    MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true }).then( client => {
+        mongoClient = client;
+        let db = mongoClient.db() || mongoClient.db("dbSamples");
+        let dbSamples = db.collection("dbSamples");
+
+        return dbSamples.insertOne(request.body);
+    }).then( result => {
+        response.status(200);
+        response.send(result);
+        mongoClient.close();
+    }).catch(err => {
+        console.log(`>>> ERROR : ${err}`);
+        response.status(500);
+        response.send({error: `Server error with get ${err}`});
+        throw err;
+    });
+});
+
+app.post("/api/login", (request, response) => {
 
     let mongoClient;
-    MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true}).then( client => {
+    MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true }).then( client => {
 
         mongoClient = client;
-        let adminCollection = mongoClient.db().collection("admin");
+        let adminDB = mongoClient.db() || mongoClient.db("dbAdmin");
+        let adminCollection = adminDB.collection("admin");
         return adminCollection.find({username: request.body.username}).toArray();
 
     }).then(user => {
@@ -84,6 +105,7 @@ app.post("/loginpost", (request, response) => {
     }).catch(err => {
         response.status(500);
         response.send(`AN ERROR OCCURED: ${err}`);
+        throw err;
     });
     
 });

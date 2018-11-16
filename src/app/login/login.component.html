@@ -5,7 +5,7 @@
   </div>
   <div class="login__group"> 
     <div class="login__group--label">Password</div>
-    <input class="login__group--input" type="password" name="password" [(ngModel)]="portfolioData.password"/>
+    <input type="password" name="password" [(ngModel)]="portfolioData.password"/>
   </div>
   <div class="login__group" *ngIf="portfolioData.loginFailed">
     <div class="login__group--result">Username or password is incorrect.</div>
