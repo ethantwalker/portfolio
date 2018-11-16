@@ -83,7 +83,19 @@ export class PortfolioDataService {
     }
 
     public submitSample():void{
+        this.http.post(
+            "https://ethantwalker.herokuapp.com/api/addSample",
+            this.sampleJSON,
+            {observe: "response", responseType: 'text'}
+        ).subscribe(
+            data => {
 
+            },
+            err => {
+                console.log(">>>ERROR SENDING DATA: " + err.error);
+            }
+
+        )
     }
 
     public login():void{
