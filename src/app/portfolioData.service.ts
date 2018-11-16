@@ -20,6 +20,8 @@ export class PortfolioDataService {
     public loginFailed = false;
     public loggedIn = false;
 
+    private sessionState = "signed out";
+
     //the currently selected sample
     public selected;
 
@@ -69,7 +71,7 @@ export class PortfolioDataService {
         );
     }
 
-    public login():boolean{
+    public login():void{
         if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
             this.loginFailed = false;
             this.loggedIn = false; 
@@ -98,6 +100,8 @@ export class PortfolioDataService {
                         case 200:
                             this.loggedIn = true;
                             this.loginFailed = false;
+                            this.router.navigate(['admin']);
+                            sessionStorage.setItem(this.sessionState, "signed in");
                             break;
                     }
                 },
@@ -110,10 +114,12 @@ export class PortfolioDataService {
 
             this.username = "";
             this.password = "";
+        }
+    }
 
-            return this.loggedIn;
-        } else {
-            return this.loggedIn;
+    public checkSessionState():void{
+        if(sessionStorage.getItem(this.sessionState) != "signed in"){
+            this.router.navigate(['login']);
         }
     }
 }

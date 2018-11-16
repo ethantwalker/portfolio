@@ -2,7 +2,6 @@ let express = require("express");
 let cors = require("cors");
 let bodyParser = require("body-parser");
 let bcrypt = require("bcrypt");
-let session = require("express-session");
 let MongoClient = require("mongodb").MongoClient;
 
 const URL = "mongodb://localhost:27017/";
@@ -13,10 +12,6 @@ let app = express();
 const port =  process.env.PORT || 8080;
 
 app.use(cors());
-
-app.use(session({
-    secret: 'Mb&Ml5Snd6L'
-}));
 
 app.use(bodyParser.json());
 app.use(express.static("./dist"));
@@ -77,9 +72,7 @@ app.post("/loginpost", (request, response) => {
             console.log("User found");
             bcrypt.compare(request.body.password, user[0].password, (err, result) => {
                 if(result){
-                    request.session.loggedin = true;
-                    request.session.cookie.expires = false;
-                    response.redirect("/#/admin/add");
+                    response.status(200);
                 } else{
                     response.status(401);
                     response.send("Incorrect username or password");
@@ -92,18 +85,6 @@ app.post("/loginpost", (request, response) => {
         response.send(`AN ERROR OCCURED: ${err}`);
     });
     
-});
-
-app.get("/#/login", (request, response) => {
-    if(request.response.loggedin){
-        response.redirect("/#/admin/add");
-    }
-});
-
-app.get("/^(#\/admin)([/].*)?/", (request, response) => {
-    if(!request.response.loggedin){
-        response.redirect("/");
-    }
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
