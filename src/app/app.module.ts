@@ -12,6 +12,8 @@ import { SelectedComponent } from './selected/selected.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {enableProdMode} from '@angular/core';
 import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
 
 enableProdMode();
 
@@ -23,11 +25,13 @@ enableProdMode();
     ContactComponent,
     ResumeComponent,
     SelectedComponent,
-    LoginComponent
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: "home", component: HomeComponent },
       { path: "resume", component: ResumeComponent },
@@ -35,6 +39,7 @@ enableProdMode();
       { path: "contact", component: ContactComponent },
       { path: "samples/selected",  component: SelectedComponent},
       { path: "login", component: LoginComponent},
+      { path: "admin", component: AdminComponent},
       { path: "", redirectTo: "home", pathMatch:"full" },
       { path: "**", redirectTo: "home", pathMatch:"full" }
     ])

@@ -1,0 +1,8 @@
+use dbAdmin;
+db.admin.drop();
+db.admin.insert([
+    {
+        "username": "Ethan",
+        "password": "$2b$10$iTqHBu4pgrzrqY6L2NOcreNw1ElDbNvUlr0ZGj58eSS3yVeCGQ0DS"
+    }
+]);
