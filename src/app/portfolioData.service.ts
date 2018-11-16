@@ -68,6 +68,7 @@ export class PortfolioDataService {
     }
 
     public load():void{
+        this.loaded = false;
         //sample api url
         this.http.get<JSONRoot>(this.retrieveScript).subscribe(
             data => {
@@ -89,7 +90,8 @@ export class PortfolioDataService {
             {observe: "response", responseType: 'text'}
         ).subscribe(
             data => {
-
+                console.log("SENT DATA STATUS: " + data.status)
+                this.load();
             },
             err => {
                 console.log(">>>ERROR SENDING DATA: " + err.error);
