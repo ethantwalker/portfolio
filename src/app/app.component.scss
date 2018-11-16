@@ -111,21 +111,6 @@
         outline: none;
     }
 
-    &--up{
-        float: right;
-        display: block;
-        color:#ddd;
-        text-align: center;
-        text-decoration: none;
-        padding: 12px 12px 12px 12px;
-
-        @media #{$device}{
-            padding: 8px 6px 8px 6px;
-        }
-
-        outline: none;
-        cursor: pointer;
-    }
   
 }
 
