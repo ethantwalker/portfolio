@@ -44,7 +44,7 @@ export class PortfolioDataService {
     //used for the button selection
     //lazy i know
     public getRoute():string{
-        return this.router.url.split("/")[1].toLowerCase();
+        return this.router.url.split("/").splice(0).join("/");
     }
 
     public getQueryParam():string{
@@ -123,5 +123,16 @@ export class PortfolioDataService {
         if(this.checkSessionState() != "signed in"){
             this.router.navigate(['login']);
         }
+    }
+
+    public redirectToAdmin():void{
+        if(this.checkSessionState() == "signed in"){
+            this.router.navigate(['admin']);
+        }
+    }
+
+    public killSession():void{
+        sessionStorage.removeItem(this.sessionState);
+        this.redirectToLogin();
     }
 }

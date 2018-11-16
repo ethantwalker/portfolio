@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
   constructor(public portfolioData:PortfolioDataService) { }
 
   ngOnInit() {
+    this.portfolioData.redirectToAdmin();
   }
 
 }
