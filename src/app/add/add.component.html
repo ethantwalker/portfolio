@@ -1,3 +1,27 @@
-<p>
-  add works!
-</p>
+<div class="add">
+  <div class="add__group">
+    <div class="add__group--label">Title</div>
+    <input type="text"/>
+  </div>
+  <div class="add__group">
+      <div class="add__group--label">Content</div>
+      <input type="text"/>
+  </div>
+  <div class="add__group">
+      <div class="add__group--label">Technologies</div>
+      <input type="text" [(ngModel)]="portfolioData.formTechs"/>
+      <button (click)="portfolioData.addTech()">Add tech</button>
+
+      <div *ngIf="portfolioData.sampleJSON.technologies.length != 0" class="add__group__techs">
+        <div class="add__group__techs--header">Technologies to be added:</div>
+        <div class="add__group__techs--tech" *ngFor="let tech of portfolioData.sampleJSON.technologies">
+          {{tech}}
+        </div>
+      </div>
+  </div>
+  <div class="add__group">
+      <div class="add__group--label">Link</div>
+      <input type="text"/>
+  </div>
+  <button class="add--button"  (click)="submitSample()">Add</button>
+</div>

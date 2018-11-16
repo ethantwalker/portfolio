@@ -53,3 +53,24 @@ input[type=text], input[type=password]{
     outline-color: #7dce94;
     
 }
+
+button{
+    @include noselect();
+
+    outline: none;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    border: none;
+    background: none;
+    background-color: #7dce94;
+    color: white;
+    box-shadow: 0 5px 0 #838685;
+
+    cursor: pointer;
+
+    &:active{
+        box-shadow: 0 3px #666;
+        transform: translateY(4px);
+    }
+}

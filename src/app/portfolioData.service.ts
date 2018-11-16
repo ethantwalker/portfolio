@@ -35,6 +35,9 @@ export class PortfolioDataService {
         "thumb":"",
         "images":[]
     }
+
+    public formTechs ="";
+
     
     constructor(myHttp:HttpClient, private router:Router, private activatedRoute: ActivatedRoute) { 
         this.http = myHttp;
@@ -79,6 +82,10 @@ export class PortfolioDataService {
         );
     }
 
+    public submitSample():void{
+
+    }
+
     public login():void{
         if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
             this.loginFailed = false;
@@ -91,7 +98,7 @@ export class PortfolioDataService {
             };
 
             this.http.post(
-                "https://ethantwalker.herokuapp.com/loginpost",
+                "https://ethantwalker.herokuapp.com/api/login",
                 sendJSON,
                 {observe: "response", responseType: 'text'}
             ).subscribe(
@@ -121,6 +128,13 @@ export class PortfolioDataService {
                 }
             );
 
+        }
+    }
+
+    public addTech():void{
+        if(this.formTechs != null && this.formTechs != ""){
+            this.sampleJSON.technologies.push(this.formTechs);
+            this.formTechs = "";
         }
     }
 
