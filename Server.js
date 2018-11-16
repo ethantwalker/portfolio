@@ -59,7 +59,7 @@ app.post("/loginpost", (request, response) => {
     MongoClient.connect((process.env.MONGODB_URI || URL), { useNewUrlParser: true}).then( client => {
 
         mongoClient = client;
-        let adminCollection = mongoClient.db("dbAdmin").collection("admin");
+        let adminCollection = mongoClient.db().collection("admin");
         return adminCollection.find({username: request.body.username}).toArray();
 
     }).then(user => {
