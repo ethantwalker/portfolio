@@ -26,6 +26,15 @@ export class PortfolioDataService {
 
     public username = "";
     public password = "";
+
+    public sampleJSON = {
+        "title":"",
+        "description":"",
+        "technologies":[],
+        "link":"",
+        "thumb":"",
+        "images":[]
+    }
     
     constructor(myHttp:HttpClient, private router:Router, private activatedRoute: ActivatedRoute) { 
         this.http = myHttp;
