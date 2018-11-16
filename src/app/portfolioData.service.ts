@@ -83,7 +83,7 @@ export class PortfolioDataService {
             };
 
             this.http.post(
-                "http://ethantwalker.herokuapp.com/loginpost",
+                "https://ethantwalker.herokuapp.com/loginpost",
                 sendJSON,
                 {observe: "response", responseType: 'text'}
             ).subscribe(
