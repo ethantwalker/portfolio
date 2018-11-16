@@ -12,7 +12,7 @@
     "server": "nodemon server/src/Server.js",
     "mongo": "mongod --dbpath c:/data/db",
     "client": "ng serve --open --live-reload false",
-    "master": "git push -u origin master",
+    "master": "git push -u origin master && git checkout ethan-working",
     "working": "git push -u origin ethan-working",
     "postinstall": "ng build --output-path dist"
   },
