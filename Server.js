@@ -106,22 +106,4 @@ app.get("/^(#\/admin)([/].*)?/", (request, response) => {
     }
 });
 
-app.get("/admin/delete/", (request, response) => {
-    if(!request.response.loggedin){
-        response.redirect("/");
-    }
-});
-
-app.get("/admin/update/", (request, response) => {
-    if(!request.response.loggedin){
-        response.redirect("/");
-    }
-});
-
-app.get("/admin/add/", (request, response) => {
-    if(!request.response.loggedin){
-        response.redirect("/");
-    }
-});
-
 app.listen(port, () => console.log(`Listening on port ${port}`));
