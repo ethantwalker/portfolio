@@ -1,0 +1,22 @@
+.resume{
+
+    font-size: 18px;
+
+    &__category{
+        margin-top: 15px;
+        font-size: 20px;
+
+        &--items{
+            margin-top: 10px;
+            border-left: 5px solid #7dce94;
+            padding-left: 10px;
+            font-size: 18px;
+
+            &--item{
+                margin-top: 5px;
+            }
+        }
+
+        
+    }
+}

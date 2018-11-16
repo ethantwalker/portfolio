@@ -1,0 +1,60 @@
+use dbSamples;
+db.samples.drop();
+db.samples.insert([
+    {
+        "title":"Weather App",
+        "description" :"A single page application using the OpenWeatherMap API and Weather Icons that displays the current weather for the selected Canadian city.",
+        "technologies": ["HTML/CSS", "Sass", "Gulp.js", "JavaScript","OpenWeatherMap API","Weather Icons"],
+        "link": "http://weatherapp.walkere.nscctruro.ca",
+        "thumb": "thumb1.PNG",
+        "images": []
+    },
+    {
+        "title":"Java Fermi Guessing Game",
+        "description":"A number combination guessing game based off of the game of the same name. The player is supposed to guess the right combination of numbers, in the right order.",
+        "technologies":["Java"],
+        "link": "",
+        "thumb": "thumb2.PNG",
+        "images": ["fermi.png"]
+    },
+    {
+        "title":"Python Text Adventure Game",
+        "description":"A 'Choose Your Own Adventure' styled game, using a CSV file to populate dialogue options. The game can scale with the provided dialogue options. It includes savegame functionality with a .txt file.",
+        "technologies":["Python"],
+        "link":"",
+        "thumb":"thumb3.PNG",
+        "images":["python1.PNG", "python2.PNG", "python3.PNG"]
+    },
+    {
+        "title": "Java Bank Machine",
+        "description": "An application that simulates a bank machine. You are able to see past transactions and choose an account type (regular, airmiles).",
+        "technologies":["Java"],
+        "link":"",
+        "thumb":"thumb4.PNG",
+        "images":["bm1.png", "bm2.png", "bm3.png"]
+    },
+    {
+        "title": "Web Server Tutorials",
+        "description":"A site that that gives tutorial on installation and testing IIS, Apache, mySQL, phpMyAdmin, PHP, and ASP.NET.",
+        "technologies":["HTML/CSS", "Apache", "IIS", "ASP.NET", "PHP", "MySQL", "phpMyAdmin"],
+        "link": "http://www.webtutorial.walkere.nscctruro.ca",
+        "thumb":"thumb5.PNG",
+        "images":[]
+    },
+    {
+        "title": "ASP.NET Guestbook App",
+        "description":"An ASP.NET Core application that is connected to a database that holds guestbook entries that are added from the app. Styled using Bootstrap.",
+        "technologies":["HTML/CSS", "Bootstrap", "JavaScript", "jQuery", "ASP.NET Core", "C#", "MySQL", "phpMyAdmin"],
+        "link":"",
+        "thumb":"thumb6.PNG",
+        "images":["gb1.PNG", "gb2.PNG"]
+    },
+    {
+        "title":"AngularJS Photo Gallery",
+        "description":"Using an old Photo Gallery application, I migrated it to Angular. The information for each photo comes from an API provided by my instructor. Each photo can be commented on.",
+        "technologies":["HTML/CSS", "Sass", "JavaScript", "Angular 4"],
+        "link":"http://photogallery.walkere.nscctruro.ca",
+        "thumb":"thumb7.PNG",
+        "images":[]
+    }
+]);

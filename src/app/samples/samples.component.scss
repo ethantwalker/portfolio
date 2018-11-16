@@ -1,0 +1,43 @@
+.samples{
+    display: flex;
+    flex-flow: row wrap;
+
+    &--sample{
+        background-color: #7dce94;
+        width: 125px;
+        height: 175px;
+        display: flex;
+        flex-flow: column wrap;
+        margin: 12px;        
+        cursor: pointer;
+        border-radius: 10px;
+
+        &--thumb{
+            display: flex;
+            
+            height: 87.5px;
+
+            justify-content: center; 
+            align-items: center;    
+
+
+            &--image{
+                width: 70px;
+                height: 70px;
+                border-radius: 50%;
+            }
+        }
+
+        &--title{
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            text-align: center;   
+            
+            color: #EAE7DC;
+            height: 87.5px;
+            font-size: 15px;
+        }
+    }
+}
+

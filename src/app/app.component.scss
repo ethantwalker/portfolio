@@ -1,0 +1,141 @@
+@import "./../globals";
+@import "./../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+.banner{
+    font-family: 'Montserrat', sans-serif;
+    margin: auto;
+    display: flex;
+    color: #EAE7DC;
+    min-height: 250px;
+    background: linear-gradient(
+        rgba(125, 206, 148, 0.4),
+        rgba(125, 206, 148, 0.8)
+    ),
+    url("./../assets/img/me.png");
+    border-bottom: 2px solid white;
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+
+    &__text{
+
+        margin-left: 40px;
+
+        @media #{$device}{
+            margin: auto;
+            text-align: center;
+        }
+
+        &--name{
+            font-size: $base-font-size * 2;
+        }
+    
+        &--desc{
+            
+        }
+
+        &--links{
+            margin-top:5px;
+
+            &--link{
+                text-decoration: none;
+                color: #EAE7DC;
+            }
+
+            &--link:hover{
+                color:white;
+            }
+        }
+    }
+}
+
+.headernav{
+    
+    font-family: 'Montserrat', sans-serif;
+    width:100%;
+    
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    background-color: #333;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+
+    &--item{
+        float: left;
+        display: block;
+        color:#ddd;
+        text-align: center;
+        text-decoration: none;
+        padding: 12px 12px 12px 12px;
+
+        @media #{$device}{
+            padding: 8px 6px 8px 6px;
+        }
+
+        outline: none;
+    }
+
+    &--item:hover{
+        background-color: #989898;
+        color: #333;
+        cursor: pointer;
+        outline: none;
+    }
+
+    &--item__selected{
+        float: left;
+        display: block;
+        color:#ddd;
+        text-align: center;
+        text-decoration: none;
+        padding: 12px 12px 12px 12px;
+
+        @media #{$device}{
+            padding: 8px 6px 8px 6px;
+        }
+
+        background-color: #ddd;
+        color: #333;
+
+        cursor: pointer;
+        outline: none;
+    }
+
+    &--up{
+        float: right;
+        display: block;
+        color:#ddd;
+        text-align: center;
+        text-decoration: none;
+        padding: 12px 12px 12px 12px;
+
+        @media #{$device}{
+            padding: 8px 6px 8px 6px;
+        }
+
+        outline: none;
+        cursor: pointer;
+    }
+  
+}
+
+.main{
+    margin: 25px;
+    font-family: 'Ubuntu', sans-serif;
+    
+    
+    &--link{
+        color: #7dce94;
+    }
+
+    &--link:visited{
+        color: #46b966
+    }
+}
+

@@ -1,0 +1,31 @@
+<div class="loadingOverlay" *ngIf="!portfolioData.loaded"><div><i class="fa fa-spinner fa-spin"></i></div></div>
+
+<nav class="headernav">
+  <span [routerLink]="['/home']" class="{{portfolioData.getRoute() == 'home' ? 'headernav--item__selected' : 'headernav--item'}}">Home</span>
+  <span [routerLink]="['/resume']" class="{{portfolioData.getRoute() == 'resume' ? 'headernav--item__selected' : 'headernav--item'}}">Resume</span>
+  <span [routerLink]="['/samples']" class="{{portfolioData.getRoute() == 'samples' ? 'headernav--item__selected' : 'headernav--item'}}">Samples</span>
+  <span [routerLink]="['/contact']" class="{{portfolioData.getRoute() == 'contact' ? 'headernav--item__selected' : 'headernav--item'}}">Contact</span>
+</nav>
+            
+<div class="banner">
+    <div class="banner__text">
+        <div class="banner__text--name">
+            Ethan Walker
+        </div>
+        <div class="banner__text--desc">
+            Web Developer and Student
+        </div>
+        <div class="banner__text--links">
+            <a target="_blank" href="https://github.com/ethantwalker/" class="banner__text--links--link">
+                <i class="fab fa-github-square fa-2x"></i>
+            </a>
+            <a target="_blank" href="https://www.linkedin.com/in/ethan-walker-216127162/" class="banner__text--links--link">
+                <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+        </div>
+    </div>
+</div>
+        
+<div class="main" *ngIf="portfolioData.loaded">
+    <router-outlet></router-outlet>
+</div>

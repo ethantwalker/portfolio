@@ -1,0 +1,18 @@
+.home{
+
+    font-size: 18px;
+
+    &__body{
+        &--item{
+            margin-top: 10px;
+        }
+
+        &--closing-item{
+            margin-top: 20px;
+        }
+
+        &--closing-name{
+            margin-top: 15px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+.contact{
+
+    font-size: 18px;
+
+    &__desc{
+        margin-top: 10px;
+    }
+
+    &--items{
+
+        margin-top: 10px;
+        margin-top: 10px;
+        border-left: 5px solid #7dce94;
+        padding-left: 10px;
+
+        &--item{
+            margin-top: 5px;
+        }
+    }
+}

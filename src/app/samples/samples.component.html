@@ -1,0 +1,13 @@
+<div class="componentheader">Click on a sample to learn about it!</div>
+<div class="samples">  
+  <span *ngFor="let sample of portfolioData.samples">
+    <div class="samples--sample" [routerLink]="['/samples/selected']" [queryParams]="{id: sample._id}">
+      <div class="samples--sample--thumb">
+        <img src="./../../assets/img/samples/{{sample.thumb}}" class="samples--sample--thumb--image"/>
+      </div>
+      <div class="samples--sample--title">
+          {{ sample.title }}
+      </div>
+    </div>
+  </span>
+</div>

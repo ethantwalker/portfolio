@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./globals";
+
+body{
+    background-color: #EAE7DC;
+    margin: 0;
+    color: #8E8D8A;
+    font-size: 18px;
+}
+
+.loadingOverlay {
+    position: fixed;
+    z-index: 999;
+    left:0px;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    overflow: show;
+    margin: auto;
+    background-color: #EAE7DC;
+    @include display-flex();
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    color: #7dce94;
+    font-size: 48px;
+}
+
+.componentheader{
+    font-size: 25px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.componentfooter{
+    margin-top: 20px;
+}
+
+a:link{
+    color: #7dce94;
+}
+
+a:visited{
+    color: #318247
+}
