@@ -17,16 +17,22 @@ export class PortfolioDataService {
     //all of the work samples
     public samples:Sample[];
 
+    //used for displaying error messages
     public loginFailed = false;
 
+    //current state of user session
     private sessionState = "signed out";
 
     //the currently selected sample
     public selected;
 
-    public username = "";
-    public password = "";
+    //the username and password
+    public userJSON = {
+        "username" : "",
+        "password" : ""
+    }
 
+    //json sample object to be sent
     public sampleJSON = {
         "title":"",
         "description":"",
@@ -43,6 +49,7 @@ export class PortfolioDataService {
         this.http = myHttp;
     }
 
+    //resets all json/form variables
     public restoreDefaults():void{
         this.sampleJSON.title = "";
         this.sampleJSON.description = "";
@@ -50,6 +57,8 @@ export class PortfolioDataService {
         this.sampleJSON.link = "";
         this.sampleJSON.thumb = "";
         this.sampleJSON.images = [];
+
+        this.formTechs = "";
     }
 
     //gets the selected sample for viewing the details of a sample
@@ -68,6 +77,8 @@ export class PortfolioDataService {
         return this.router.url.split("/").splice(0).join("/");
     }
 
+    //gets the query paramaters of the selected sample
+    //the id of the sample
     public getQueryParam():string{
         let id:string;
         this.activatedRoute.queryParams.subscribe(params => {
@@ -76,6 +87,7 @@ export class PortfolioDataService {
         return id;
     }
 
+    //loads all samples
     public load():void{
         this.loaded = false;
         //sample api url
@@ -92,6 +104,7 @@ export class PortfolioDataService {
         );
     }
 
+    //submits the sample json object
     public submitSample():void{
         this.http.post(
             "https://ethantwalker.herokuapp.com/api/addSample",
@@ -111,19 +124,16 @@ export class PortfolioDataService {
     }
 
     public login():void{
-        if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
+        if((this.userJSON.username != "" || this.userJSON.username != null) && (this.userJSON.password != "" || this.userJSON.username != null)){
             this.loginFailed = false;
 
             console.log(">>>LOGGING IN...");
 
-            let sendJSON = {
-                "username": this.username,
-                "password": this.password
-            };
+            
 
             this.http.post(
                 "https://ethantwalker.herokuapp.com/api/login",
-                sendJSON,
+                this.userJSON,
                 {observe: "response", responseType: 'text'}
             ).subscribe(
                 //if sending data was a sucess, load the data again
@@ -140,8 +150,8 @@ export class PortfolioDataService {
                             this.router.navigate(['admin']);
                             sessionStorage.setItem(this.sessionState, "signed in");
 
-                            this.username = "";
-                            this.password = "";
+                            this.userJSON.username = "";
+                            this.userJSON.password = "";
 
                             break;
                     }

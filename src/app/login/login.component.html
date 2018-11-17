@@ -1,11 +1,11 @@
 <div class="login"> 
   <div class="login__group">
     <div class="login__group--label">Username</div>
-    <input class="login__group--input" type="text" name="username" [(ngModel)]="portfolioData.username"/>
+    <input class="login__group--input" type="text" name="username" [(ngModel)]="portfolioData.userJSON.username"/>
   </div>
   <div class="login__group"> 
     <div class="login__group--label">Password</div>
-    <input type="password" name="password" [(ngModel)]="portfolioData.password"/>
+    <input type="password" name="password" [(ngModel)]="portfolioData.userJSON.password"/>
   </div>
   <div class="login__group" *ngIf="portfolioData.loginFailed">
     <div class="login__group--result">Username or password is incorrect.</div>
