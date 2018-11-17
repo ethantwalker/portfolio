@@ -36,11 +36,20 @@ export class PortfolioDataService {
         "images":[]
     }
 
-    public formTechs ="";
+    public formTechs = "";
 
     
     constructor(myHttp:HttpClient, private router:Router, private activatedRoute: ActivatedRoute) { 
         this.http = myHttp;
+    }
+
+    public restoreDefaults():void{
+        this.sampleJSON.title = "";
+        this.sampleJSON.description = "";
+        this.sampleJSON.technologies = [];
+        this.sampleJSON.link = "";
+        this.sampleJSON.thumb = "";
+        this.sampleJSON.images = [];
     }
 
     //gets the selected sample for viewing the details of a sample
@@ -91,6 +100,7 @@ export class PortfolioDataService {
         ).subscribe(
             data => {
                 console.log("SENT DATA STATUS: " + data.status)
+                this.restoreDefaults();
                 this.load();
             },
             err => {
