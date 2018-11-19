@@ -167,18 +167,18 @@ export class PortfolioDataService {
         }
     }
 
-    public checkSessionState():string{
+    public getSessionState():string{
         return sessionStorage.getItem(this.sessionState);
     }
 
     public redirectToLogin():void{
-        if(this.checkSessionState() != "signed in"){
+        if(this.getSessionState() != "signed in"){
             this.router.navigate(['login']);
         }
     }
 
     public redirectToAdmin():void{
-        if(this.checkSessionState() == "signed in"){
+        if(this.getSessionState() == "signed in"){
             this.router.navigate(['admin']);
         }
     }
