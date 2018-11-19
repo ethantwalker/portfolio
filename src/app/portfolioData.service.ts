@@ -17,16 +17,23 @@ export class PortfolioDataService {
     //all of the work samples
     public samples:Sample[];
 
+    //used for displaying error messages
     public loginFailed = false;
 
+    //current state of user session
     private sessionState = "signed out";
 
     //the currently selected sample
-    public selected;
+    public selected:Sample;
+    public isSelected:boolean = false;
 
-    public username = "";
-    public password = "";
+    //the username and password
+    public userJSON = {
+        "username" : "",
+        "password" : ""
+    }
 
+    //json sample object to be sent
     public sampleJSON = {
         "title":"",
         "description":"",
@@ -36,20 +43,23 @@ export class PortfolioDataService {
         "images":[]
     }
 
-    public formTechs ="";
+    public formTechs = "";
 
     
     constructor(myHttp:HttpClient, private router:Router, private activatedRoute: ActivatedRoute) { 
         this.http = myHttp;
     }
 
-    //gets the selected sample for viewing the details of a sample
-    public setSelectedSample():void{
-        this.samples.filter(json => {
-            if(json._id == this.getQueryParam()){
-                this.selected = json;
-            }
-        });
+    //resets all json/form variables
+    public restoreDefaults():void{
+        this.sampleJSON.title = "";
+        this.sampleJSON.description = "";
+        this.sampleJSON.technologies = [];
+        this.sampleJSON.link = "";
+        this.sampleJSON.thumb = "";
+        this.sampleJSON.images = [];
+
+        this.formTechs = "";
     }
 
     //grabs the currently selected route
@@ -59,14 +69,22 @@ export class PortfolioDataService {
         return this.router.url.split("/").splice(0).join("/");
     }
 
-    public getQueryParam():string{
-        let id:string;
+    //gets the query paramaters of the selected sample, if it exists
+    //it then sets the selected sample
+    public checkParams():void{
         this.activatedRoute.queryParams.subscribe(params => {
-            id = params['id'];
+            if(params['id']){
+                this.samples.filter(json => {
+                    if(json._id ==  params['id']){
+                        this.selected = json;
+                        this.isSelected = true;
+                    }
+                }); 
+            }
         });
-        return id;
     }
 
+    //loads all samples
     public load():void{
         this.loaded = false;
         //sample api url
@@ -83,6 +101,7 @@ export class PortfolioDataService {
         );
     }
 
+    //submits the sample json object
     public submitSample():void{
         this.http.post(
             "https://ethantwalker.herokuapp.com/api/addSample",
@@ -91,6 +110,7 @@ export class PortfolioDataService {
         ).subscribe(
             data => {
                 console.log("SENT DATA STATUS: " + data.status)
+                this.restoreDefaults();
                 this.load();
             },
             err => {
@@ -101,19 +121,14 @@ export class PortfolioDataService {
     }
 
     public login():void{
-        if((this.username != "" || this.username != null) && (this.password != "" || this.username != null)){
+        if((this.userJSON.username != "" || this.userJSON.username != null) && (this.userJSON.password != "" || this.userJSON.username != null)){
             this.loginFailed = false;
 
             console.log(">>>LOGGING IN...");
 
-            let sendJSON = {
-                "username": this.username,
-                "password": this.password
-            };
-
             this.http.post(
                 "https://ethantwalker.herokuapp.com/api/login",
-                sendJSON,
+                this.userJSON,
                 {observe: "response", responseType: 'text'}
             ).subscribe(
                 //if sending data was a sucess, load the data again
@@ -130,8 +145,8 @@ export class PortfolioDataService {
                             this.router.navigate(['admin']);
                             sessionStorage.setItem(this.sessionState, "signed in");
 
-                            this.username = "";
-                            this.password = "";
+                            this.userJSON.username = "";
+                            this.userJSON.password = "";
 
                             break;
                     }
@@ -152,18 +167,18 @@ export class PortfolioDataService {
         }
     }
 
-    public checkSessionState():string{
+    public getSessionState():string{
         return sessionStorage.getItem(this.sessionState);
     }
 
     public redirectToLogin():void{
-        if(this.checkSessionState() != "signed in"){
+        if(this.getSessionState() != "signed in"){
             this.router.navigate(['login']);
         }
     }
 
     public redirectToAdmin():void{
-        if(this.checkSessionState() == "signed in"){
+        if(this.getSessionState() == "signed in"){
             this.router.navigate(['admin']);
         }
     }

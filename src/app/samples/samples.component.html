@@ -1,13 +1,43 @@
-<div class="componentheader">Click on a sample to learn about it!</div>
+<div class="componentheader">Click on a sample to learn more about it!<div>
+
 <div class="samples">  
-  <span *ngFor="let sample of portfolioData.samples">
-    <div class="samples--sample" [routerLink]="['/samples/selected']" [queryParams]="{id: sample._id}">
-      <div class="samples--sample--thumb">
-        <img src="./../../assets/img/samples/{{sample.thumb}}" class="samples--sample--thumb--image"/>
+
+  <div class="samples__collection" [class.collection--scroll]="portfolioData.isSelected"> 
+
+      <div class="samples__collection--sample" [routerLink]="['/samples']" [queryParams]="{id: sample._id}" *ngFor="let sample of portfolioData.samples">
+        <div class="samples__collection--sample--thumb">
+          <img src="./../../assets/img/samples/{{sample.thumb}}" class="samples__collection--sample--thumb--image"/>
+        </div>
+        <div class="samples__collection--sample--title">
+            {{ sample.title }}
+        </div>
       </div>
-      <div class="samples--sample--title">
-          {{ sample.title }}
-      </div>
-    </div>
-  </span>
+
+  </div>
+  
+  <div class="samples--selected" *ngIf="portfolioData.isSelected">
+      <div class="samples--selected--details">
+          <i [routerLink]="['/samples']" (click)="portfolioData.isSelected = false" class="fas fa-times fa-lg samples--selected--details--arrow" style="cursor:pointer"></i> <span class="selected--details--title"> DETAILS: {{ portfolioData.selected.title }} </span>
+        </div>
+        <div class="samples--selected--link" *ngIf="portfolioData.selected.link != '' && portfolioData.selected.link != null">
+          Check it out! <a href="{{portfolioData.selected.link}}" class="main--link" target="_blank">LINK</a>
+        </div>
+        <div class="samples--selected--desc">
+          {{ portfolioData.selected.description }}
+        </div>
+        <div class="samples--selected--techs">
+          Technologies used: {{ portfolioData.selected.technologies.join(", ") }}
+        </div>
+      
+        <div class="samples--selected--imgHeader" *ngIf="portfolioData.selected.images.length != 0">
+          Images
+        </div>
+      
+        <div class="samples--selected__images" *ngFor="let img of portfolioData.selected.images">
+          <div class="samples--selected__images__container">
+            <img src="./../../assets/img/samples/{{img}}"/>
+          </div>
+        </div>
+  </div>
+
 </div>

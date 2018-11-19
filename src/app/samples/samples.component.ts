@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioDataService } from './../portfolioData.service'
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-samples',
@@ -8,9 +9,18 @@ import { PortfolioDataService } from './../portfolioData.service'
 })
 export class SamplesComponent implements OnInit {
 
-  constructor(public portfolioData:PortfolioDataService) { }
+  constructor(public portfolioData:PortfolioDataService, router:Router) { 
+    router.events.forEach((e) => {
+      if(this.portfolioData.isSelected){
+        portfolioData.checkParams();
+      } else {
+        portfolioData.selected = null;
+      }
+    });
+  }
 
   ngOnInit() {
+    this.portfolioData.checkParams();
   }
 
 }
