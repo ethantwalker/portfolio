@@ -8,7 +8,6 @@ import { SamplesComponent } from './samples/samples.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ResumeComponent } from './resume/resume.component';
-import { SelectedComponent } from './selected/selected.component';
 import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 import {enableProdMode} from '@angular/core';
 import { LoginComponent } from './login/login.component';
@@ -26,7 +25,6 @@ enableProdMode();
     HomeComponent,
     ContactComponent,
     ResumeComponent,
-    SelectedComponent,
     LoginComponent,
     AddComponent,
     DeleteComponent,
@@ -41,7 +39,6 @@ enableProdMode();
       { path: "resume", component: ResumeComponent },
       { path: "samples", component: SamplesComponent },
       { path: "contact", component: ContactComponent },
-      { path: "samples/selected",  component: SelectedComponent},
       { path: "login", component: LoginComponent},
       { path: "admin", redirectTo: "admin/add", pathMatch: "full"},
       { path: "admin/add", component: AddComponent},

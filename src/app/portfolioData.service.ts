@@ -24,7 +24,8 @@ export class PortfolioDataService {
     private sessionState = "signed out";
 
     //the currently selected sample
-    public selected;
+    public selected:Sample;
+    
 
     //the username and password
     public userJSON = {
@@ -61,15 +62,6 @@ export class PortfolioDataService {
         this.formTechs = "";
     }
 
-    //gets the selected sample for viewing the details of a sample
-    public setSelectedSample():void{
-        this.samples.filter(json => {
-            if(json._id == this.getQueryParam()){
-                this.selected = json;
-            }
-        });
-    }
-
     //grabs the currently selected route
     //used for the button selection
     //lazy i know
@@ -77,14 +69,18 @@ export class PortfolioDataService {
         return this.router.url.split("/").splice(0).join("/");
     }
 
-    //gets the query paramaters of the selected sample
-    //the id of the sample
-    public getQueryParam():string{
-        let id:string;
+    //gets the query paramaters of the selected sample, if it exists
+    //it then sets the selected sample
+    public checkParams():void{
         this.activatedRoute.queryParams.subscribe(params => {
-            id = params['id'];
+            if(params['id']){
+                this.samples.filter(json => {
+                    if(json._id ==  params['id']){
+                        this.selected = json;
+                    }
+                }); 
+            }
         });
-        return id;
     }
 
     //loads all samples
@@ -128,8 +124,6 @@ export class PortfolioDataService {
             this.loginFailed = false;
 
             console.log(">>>LOGGING IN...");
-
-            
 
             this.http.post(
                 "https://ethantwalker.herokuapp.com/api/login",
