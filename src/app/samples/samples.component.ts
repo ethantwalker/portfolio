@@ -11,7 +11,11 @@ export class SamplesComponent implements OnInit {
 
   constructor(public portfolioData:PortfolioDataService, router:Router) { 
     router.events.forEach((e) => {
+      if(this.portfolioData.isSelected){
         portfolioData.checkParams();
+      } else {
+        portfolioData.selected = null;
+      }
     });
   }
 

@@ -25,7 +25,7 @@ export class PortfolioDataService {
 
     //the currently selected sample
     public selected:Sample;
-    
+    public isSelected:boolean = false;
 
     //the username and password
     public userJSON = {
@@ -77,6 +77,7 @@ export class PortfolioDataService {
                 this.samples.filter(json => {
                     if(json._id ==  params['id']){
                         this.selected = json;
+                        this.isSelected = true;
                     }
                 }); 
             }

@@ -2,9 +2,9 @@
 
 <div class="samples">  
 
-  <div class="samples__collection" *ngFor="let sample of portfolioData.samples">
+  <div class="samples__collection" [class.collection--scroll]="portfolioData.isSelected"> 
 
-      <div class="samples__collection--sample" [routerLink]="['/samples']" [queryParams]="{id: sample._id}">
+      <div class="samples__collection--sample" [routerLink]="['/samples']" [queryParams]="{id: sample._id}" *ngFor="let sample of portfolioData.samples">
         <div class="samples__collection--sample--thumb">
           <img src="./../../assets/img/samples/{{sample.thumb}}" class="samples__collection--sample--thumb--image"/>
         </div>
@@ -14,10 +14,10 @@
       </div>
 
   </div>
-
-  <div class="samples--selected" *ngIf="portfolioData.selected != null">
+  
+  <div class="samples--selected" *ngIf="portfolioData.isSelected">
       <div class="samples--selected--details">
-          <i [routerLink]="['/samples']" (click)="portfolioData.selected = null" class="fas fa-times fa-lg samples--selected--details--arrow" style="cursor:pointer"></i> <span class="selected--details--title"> DETAILS: {{ portfolioData.selected.title }} </span>
+          <i [routerLink]="['/samples']" (click)="portfolioData.isSelected = false" class="fas fa-times fa-lg samples--selected--details--arrow" style="cursor:pointer"></i> <span class="selected--details--title"> DETAILS: {{ portfolioData.selected.title }} </span>
         </div>
         <div class="samples--selected--link" *ngIf="portfolioData.selected.link != '' && portfolioData.selected.link != null">
           Check it out! <a href="{{portfolioData.selected.link}}" class="main--link" target="_blank">LINK</a>

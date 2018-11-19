@@ -3,7 +3,7 @@
 <nav class="headernav">
     <span [routerLink]="['/home']" class="{{portfolioData.getRoute() == '/home' ? 'headernav--item__selected' : 'headernav--item'}}">Home</span>
     <span [routerLink]="['/resume']" class="{{portfolioData.getRoute() == '/resume' ? 'headernav--item__selected' : 'headernav--item'}}">Resume</span>
-    <span [routerLink]="['/samples']" class="{{portfolioData.getRoute() == '/samples' ? 'headernav--item__selected' : 'headernav--item'}}">Samples</span>
+    <span [routerLink]="['/samples']" class="{{portfolioData.getRoute() == '/samples' ? 'headernav--item__selected' : 'headernav--item'}}" [queryParams]=" portfolioData.selected != null ? {id: portfolioData.selected._id} : ''">Samples</span>
     <span [routerLink]="['/contact']" class="{{portfolioData.getRoute() == '/contact' ? 'headernav--item__selected' : 'headernav--item'}}">Contact</span>
     <span *ngIf="portfolioData.checkSessionState() == 'signed in'" [routerLink]="['/admin/add']" class="{{portfolioData.getRoute() == '/admin/add' ? 'headernav--item__selected' : 'headernav--item'}}">Add</span>
     <span *ngIf="portfolioData.checkSessionState() == 'signed in'" [routerLink]="['/admin/update']" class="{{portfolioData.getRoute() == '/admin/update' ? 'headernav--item__selected' : 'headernav--item'}}">Update</span>

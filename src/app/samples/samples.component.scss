@@ -4,15 +4,17 @@
 .samples{
 
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
+    
     
 
     &__collection{
 
+        display: flex;
+        flex-flow: row wrap;
         
-        flex-grow: 1;
-
         &--sample{
+
             outline: none;
             flex-grow: 0;
             background-color: #7dce94;
@@ -55,8 +57,10 @@
 
     &--selected{
 
-   
-        flex-grow: 1;
+        padding-left: 15px;
+        overflow-y: scroll;
+        height: 500px;
+        flex: 1 1 0;
         
         &--details{
             &--title{
@@ -104,3 +108,8 @@
     }
 }
 
+.collection--scroll{
+    overflow-y: scroll;
+    height: 500px;
+    flex: 1 1 0;
+}
