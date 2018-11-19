@@ -1,11 +1,15 @@
 @import "./../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-
+@import "./../../globals";
 
 .samples{
 
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     margin-top: 15px;
+
+    @media #{$device}{
+        display: block;
+    }
     
 
     &__collection{
@@ -53,6 +57,8 @@
                 font-size: 15px;
             }
         }
+
+        
     }
 
     &--selected{
@@ -62,6 +68,7 @@
         height: 500px;
         flex: 1 1 0;
         font-size: 18px;
+        margin-top: 25px;
 
         &--details{
             &--title{
