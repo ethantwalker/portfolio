@@ -5,7 +5,7 @@
 
     display: flex;
     flex-flow: row nowrap;
-    
+    margin-top: 15px;
     
 
     &__collection{
@@ -61,7 +61,8 @@
         overflow-y: scroll;
         height: 500px;
         flex: 1 1 0;
-        
+        font-size: 18px;
+
         &--details{
             &--title{
                 font-size: 20px;
@@ -77,6 +78,7 @@
         }
     
         &--desc{
+            
             margin-top: 10px;
         }
     
