@@ -4,7 +4,7 @@ db.samples.insert([
     {
         "title":"Portfolio",
         "description":"A single page web application built using MEAN stack. My portfolio is a collection of various projects that I have worked on during my time at NSCC. The MongoDB database contains descriptions about each project, what technologies it uses, and links to artifacts that are web applications. It also has user authentication so later down the line I am able to add portfolio pieces straight through the web app itself!"
-        "technologies" : ["MongoDB", "Express.js", "AngularJS", "Node.js", "HTML/CSS", "Sass", "Typescript"],
+        "technologies" : ["MongoDB", "Express.js", "AngularJS", "Node.js", "HTML/CSS", "Sass", "Typescript", "mLab"],
         "link":"https://ethantwalker.herokuapp.com/#/home",
         "thumb":"thumbEthan.png",
         "images":[]
@@ -58,9 +58,9 @@ db.samples.insert([
         "images":["gb1.PNG", "gb2.PNG"]
     },
     {
-        "title":"AngularJS Photo Gallery",
-        "description":"Using an old Photo Gallery application, I migrated it to Angular. The information for each photo comes from an API provided by my instructor. Each photo can be commented on.",
-        "technologies":["HTML/CSS", "Sass", "Typecript", "AngularJS"],
+        "title":"MEAN Photo Gallery",
+        "description":"Using an old Photo Gallery application, I migrated it to MEAN. Each photo can be commented on.",
+        "technologies":["MongoDB", "Express.js", "AngularJS", "Node.js", "HTML/CSS", "Sass", "Typescript", "mLab"],
         "link":"http://photogallery.walkere.nscctruro.ca",
         "thumb":"thumb7.PNG",
         "images":[]
