@@ -2,6 +2,14 @@ use dbSamples;
 db.samples.drop();
 db.samples.insert([
     {
+        "title":"Portfolio",
+        "description":"A single page web application built using MEAN stack. My portfolio is a collection of various projects that I have worked on during my time at NSCC. The MongoDB database contains descriptions about each project, what technologies it uses, and links to artifacts that are web applications. It also has user authentication so later down the line I am able to add portfolio pieces straight through the web app itself!"
+        "technologies" : ["MongoDB", "Express.js", "AngularJS", "Node.js", "HTML/CSS", "Sass", "Typescript"],
+        "link":"https://ethantwalker.herokuapp.com/#/home",
+        "thumb":"thumbEthan.png",
+        "images":[]
+    },
+    {
         "title":"Weather App",
         "description" :"A single page application using the OpenWeatherMap API and Weather Icons that displays the current weather for the selected Canadian city.",
         "technologies": ["HTML/CSS", "Sass", "Gulp.js", "JavaScript","OpenWeatherMap API","Weather Icons"],
@@ -52,7 +60,7 @@ db.samples.insert([
     {
         "title":"AngularJS Photo Gallery",
         "description":"Using an old Photo Gallery application, I migrated it to Angular. The information for each photo comes from an API provided by my instructor. Each photo can be commented on.",
-        "technologies":["HTML/CSS", "Sass", "JavaScript", "Angular 4"],
+        "technologies":["HTML/CSS", "Sass", "Typecript", "AngularJS"],
         "link":"http://photogallery.walkere.nscctruro.ca",
         "thumb":"thumb7.PNG",
         "images":[]
