@@ -6,7 +6,8 @@
 
       <div class="samples__collection--sample" [routerLink]="['/samples']" [queryParams]="{id: sample._id}" *ngFor="let sample of portfolioData.samples">
         <div class="samples__collection--sample--thumb">
-          <img src="./../../assets/img/samples/{{sample.thumb}}" class="samples__collection--sample--thumb--image"/>
+          <img src="./../../assets/img/samples/{{sample.thumb}}" class="samples__collection--sample--thumb--image" *ngIf="sample.thumb != ''"/>
+          <img src="./../../favicon.png" class="samples__collection--sample--thumb--image" *ngIf="sample.thumb == ''"/>
         </div>
         <div class="samples__collection--sample--title">
             {{ sample.title }}
