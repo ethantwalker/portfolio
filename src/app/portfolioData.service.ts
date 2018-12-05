@@ -26,6 +26,7 @@ export class PortfolioDataService {
     //the currently selected sample
     public selected:Sample;
     public isSelected:boolean = false;
+    public inSelected:boolean = false;
 
     //the username and password
     public userJSON = {
@@ -74,12 +75,16 @@ export class PortfolioDataService {
     public checkParams():void{
         this.activatedRoute.queryParams.subscribe(params => {
             if(params['id']){
+                this.inSelected = true;
+
                 this.samples.filter(json => {
                     if(json._id ==  params['id']){
                         this.selected = json;
                         this.isSelected = true;
                     }
                 }); 
+            } else {
+                this.inSelected = false;
             }
         });
     }
