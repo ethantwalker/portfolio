@@ -26,7 +26,6 @@ export class PortfolioDataService {
     //the currently selected sample
     public selected:Sample;
     public isSelected:boolean = false;
-    public inSelected:boolean = false;
 
     //the username and password
     public userJSON = {
@@ -66,8 +65,8 @@ export class PortfolioDataService {
     //grabs the currently selected route
     //used for the button selection
     //lazy i know
-    public getRoute():string{
-        return this.router.url.split("/").splice(0).join("/");
+    public getRoute(routeName):boolean{
+        return this.router.url.includes(routeName);
     }
 
     //gets the query paramaters of the selected sample, if it exists
@@ -75,7 +74,7 @@ export class PortfolioDataService {
     public checkParams():void{
         this.activatedRoute.queryParams.subscribe(params => {
             if(params['id']){
-                this.inSelected = true;
+                
 
                 this.samples.filter(json => {
                     if(json._id ==  params['id']){
@@ -84,7 +83,7 @@ export class PortfolioDataService {
                     }
                 }); 
             } else {
-                this.inSelected = false;
+                
             }
         });
     }
