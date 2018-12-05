@@ -14,7 +14,7 @@ export class SamplesComponent implements OnInit {
       if(this.portfolioData.isSelected){
         portfolioData.checkParams();
       } else {
-        this.portfolioData.inSelected = false;
+        
         portfolioData.selected = null;
       }
     });
