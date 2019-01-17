@@ -64,5 +64,13 @@ db.samples.insert([
         "link":"http://photogallery.walkere.nscctruro.ca",
         "thumb":"thumb7.PNG",
         "images":[]
+    },
+    {
+        "title":"School Closure Notifier",
+        "description":"In Python, I created a small script that scrapes NSCC's school closure page to see if Truro Campus is closed. Using Twilio it sends me a text message when it is closed. It also notifies me on my computer.",
+        "technologies":["Python", "Twilio", "Beautifulsoup4", "win10toast"],
+        "link":"",
+        "thumb":"",
+        "images":["closure.png", "closure1.png"]
     }
 ]);
