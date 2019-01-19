@@ -72,5 +72,13 @@ db.samples.insert([
         "link":"",
         "thumb":"",
         "images":["closure.png", "closure1.png"]
+    },
+    {
+        "title":"Challenge NS Solution",
+        "description":"At NSCC Truo, I attended Challenge Nova Scotia 2018, where I was in a group tasked of solving the question: what can we as the government, education, and buisiness sectors do to help innovators get their ideas heard, create jobs for Nova Scotians, and build great companies? Me and my group came up with an idea - Lobster Trap, a networking event where innovators pitch their ideas in front of panelists of buisiness or governement members and an audience after having them submittied through a local employment office. The event itself is also streamed through an app, where the panelists apply as volunteers.",
+        "technologies":["none"],
+        "link":"https://www.youtube.com/watch?v=xXrj_qpWZNc&feature=youtu.be",
+        "thumb":"",
+        "images":["challenge.png"]
     }
 ]);
